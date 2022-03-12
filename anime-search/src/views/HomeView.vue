@@ -7,7 +7,7 @@
         </form>
       </div>
     </div>
-    <AnimeList :animeList="animes"></AnimeList>
+    <AnimeList :animeList="animes" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     animes() {
       return this.$root.$data.animeList.filter(
         (anime) =>
-          anime.quote.toLowerCase().search(this.searchText.toLowerCase()) >= 0
+          anime.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0
       );
     },
   },
@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background: black;
+}
+
 .wrapper {
   display: flex;
   align-items: center;

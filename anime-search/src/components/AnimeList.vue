@@ -7,12 +7,17 @@
         :key="currentAnime.id"
       >
         <div class="info">
-          <h1>{{ currentAnime.animeName }}</h1>
+          <h1>{{ currentAnime.name }}</h1>
           <p>{{ currentAnime.character }}</p>
-          <p>{{ currentAnime.quote }}</p>
         </div>
         <div class="image">
-          <img :src="'/images/' + anime.image" />
+          <img :src="'/images/' + currentAnime.image" />
+        </div>
+        <div class="price">
+          <h2>{{ currentAnime.quote }}</h2>
+          <button class="auto" v-on:click="addToFavoriteList(currentAnime.id)">
+            <img alt="heartPic" src="/heart-shape-button.jpg" />
+          </button>
         </div>
       </div>
     </div>
@@ -25,10 +30,17 @@ export default {
   props: {
     animeList: Array,
   },
+  methods: {
+    addToFavoriteList(animeId) {
+      this.$root.$data.favoriteList.push(
+        this.$root.$data.animeList[animeId - 1]
+      );
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .wrapper {
   display: flex;
   align-items: center;
@@ -72,8 +84,33 @@ export default {
   font-size: 16px;
 }
 
+.price h2 {
+  font-size: 16px;
+  color: white;
+}
+
 .info p {
   margin: 0px;
   font-size: 10px;
+}
+
+.price {
+  display: flex;
+}
+
+.price img {
+  height: 30px;
+  width: 30px;
+  border: none;
+}
+
+button {
+  height: 50px;
+  color: white;
+  border: none;
+}
+
+.auto {
+  margin-left: auto;
 }
 </style>
