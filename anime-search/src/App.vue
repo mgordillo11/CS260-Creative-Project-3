@@ -7,8 +7,18 @@
         </router-link>
       </div>
       <div id="side">
-        <router-link to="/favorite">Your Favorite Anime</router-link>
-        <router-link to="/recommendation">Recommendations</router-link>
+        <router-link to="/favorite">
+          <div class="favorite-view">
+            <img src="../public/favorite.jpg" />
+            <p>Favorites</p>
+          </div>
+        </router-link>
+        <router-link to="/recommendation">
+          <div class="recommendedView">
+            <img src="../public/recommended.png" />
+            <p>Recommendations</p>
+          </div>
+        </router-link>
       </div>
     </div>
     <router-view />
@@ -100,5 +110,23 @@ nav a.router-link-exact-active {
   grid-area: side;
   display: flex;
   justify-content: space-evenly;
+}
+
+.favorite-view {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.favorite-view p {
+  margin: 0px;
+}
+
+.favorite-view img {
+  width: 25%;
+}
+
+.recommendedView img {
+  width: 59%;
 }
 </style>
