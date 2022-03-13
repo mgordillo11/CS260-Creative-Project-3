@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <router-link to="/favorite">Your Favorite Anime</router-link>
-    </nav>
+    <div id="menu">
+      <div id="brand">
+        <router-link to="/">
+          <img src="../public/animeLogo.png" />
+        </router-link>
+      </div>
+      <div id="side">
+        <router-link to="/favorite">Your Favorite Anime</router-link>
+        <router-link to="/recommendation">Recommendations</router-link>
+      </div>
+    </div>
     <router-view />
 
     <div class="github-container">
@@ -28,7 +34,29 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #42b983;
+  background: lightgoldenrodyellow;
+}
+
+#menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 5px;
+  grid-template-areas: "none brand side";
+  margin-bottom: 50px;
+}
+
+#menu a {
+  color: #b84901;
+}
+
+#brand {
+  grid-area: brand;
+  display: flex;
+  justify-content: center;
+}
+
+#brand img {
+  height: 200px;
 }
 
 nav {
@@ -56,5 +84,21 @@ nav a.router-link-exact-active {
 
 .github-container li {
   list-style: none;
+}
+
+#brand {
+  grid-area: brand;
+  display: flex;
+  justify-content: center;
+}
+
+#brand img {
+  height: 200px;
+}
+
+#side {
+  grid-area: side;
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>

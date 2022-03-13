@@ -15,8 +15,11 @@
         </div>
         <div class="price">
           <h2>Quote: {{ currentAnime.quote }}</h2>
-          <button class="auto" v-on:click="addToFavoriteList(currentAnime.id)">
-            <img alt="heartPic" src="/heart-shape-button.jpg" />
+          <button
+            class="auto"
+            v-on:click="deleteFromFavoriteList(currentAnime.id)"
+          >
+            Unfollow
           </button>
         </div>
       </div>
@@ -31,15 +34,15 @@ export default {
     animeList: Array,
   },
   methods: {
-    addToFavoriteList(animeId) {
-      const tempList = this.$root.$data.favoriteList.filter(
-        (anime) => anime.id === animeId
-      );
-
-      if (tempList.length === 0) {
-        this.$root.$data.favoriteList.push(
-          this.$root.$data.animeList[animeId - 1]
-        );
+    deleteFromFavoriteList(animeId) {
+      let currentAnimeItem = 0;
+      while (this.$root.$data.favoriteList.length > currentAnimeItem) {
+        if (this.$root.$data.favoriteList[currentAnimeItem].id === animeId) {
+          this.$root.$data.favoriteList.splice(currentAnimeItem, 1);
+          break;
+        } else {
+          currentAnimeItem++;
+        }
       }
     },
   },
@@ -83,7 +86,11 @@ export default {
   background: #f2921d;
   color: #000;
   padding: 10px 30px;
-  height: 100px;
+  height: 80px;
+}
+
+.info p {
+  font-size: 10px;
 }
 
 .info h1 {
@@ -97,12 +104,12 @@ export default {
 
 .info p {
   font-size: 12px;
+  font-style: italic;
 }
 
 .price {
   display: flex;
   flex-direction: column;
-  border: solid 3px black;
 }
 
 .price img {
@@ -113,12 +120,11 @@ export default {
 
 button {
   height: 50px;
-  color: white;
+  color: black;
   border: none;
 }
 
 .auto {
   justify-content: center;
-  color: black;
 }
 </style>
